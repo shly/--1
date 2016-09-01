@@ -15,4 +15,5 @@ window对象的name属性是一个很特别的属性，当该window的location�
 
 ## 参考文章
 http://blog.csdn.net/bao19901210/article/details/21458001
+
 http://bbs.blueidea.com/thread-3085629-1-1.html
