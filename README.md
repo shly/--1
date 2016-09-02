@@ -10,6 +10,12 @@ name 在浏览器环境中是一个全局/window对象的属性，且当在 fram
 
 window对象的name属性是一个很特别的属性，当该window的location变化，然后重新加载，它的name属性可以依然保持不变。
 依此原理，我们可以在页面A中用iframe加载其他域的页面B，而页面B中用JavaScript把需要传递的数据赋值给 window.name，页面A的iframe加载完成之后，页面A修改iframe的地址，将其变成同域的一个地址，然后就可以读出window.name的值了。
+## 解决方案优点
+
+1. 它是安全的。也就是说，它和其他的基于安全传输的 frame 一样安全，例如 Fragment Identifier messaging （FIM）和 Subspace。(I)Frames 也有他们自己的安全问题，由于 frame 可以改变其他 frame 的 location，但是这个是非常不同的安全溢出，通常不太严重。
+2. 它比 FIM 更快，因为它不用处理小数据包大小的 Fragment Identifier ，并且它不会有更多的 IE 上的“机关枪”声音效果。它也比 Subspace 快，Subspace 需要加载两个 Iframe 和两个本地的 HTML 文件来处理一个请求。window.name 仅需要一个 Iframe 和一个本地文件。
+3. 它比 FIM 和 Subspace 更简单和安全。FIM 稍微复杂，而 Subspace 非常复杂。Subspace 也有一些额外的限制和安装要求，如预先声明所有的目标主机和拥有针对若干不同特殊主机的 DNS 入口。window.name 非常简单和容易使用。
+4. 它不需要任何插件（比如 Flash）或者替代技术（例如 Java）。
 
 ## DEMO说明
 文件夹a和b是两个不同的服务器（端口号不同），a服务器上的public文件夹中的app.html要请求b服务器中的public文件夹下的data.html中的数据，实现方式见app.html。
